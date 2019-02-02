@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#d8d8d8</color>
+    <color name="black">#000000</color>
+    <color name="blue">#3944AB</color>
+    <color name="main_gray">#B1B1B1</color>
+    <color name="whit">#ffffff</color>
+    <color name="left_dark_black">#4A4A4A</color>
+    <color name="left_line">#EAEAEA</color>
+    <color name="receipt_gray_tv">#929292</color>
+    <color name="red">#FF0000</color>
+    <color name="background_gray">#F7F7F7</color>
+    <color name="identity_line">#E7E7E7</color>
+    <color name="identity_hint_gray">#DADADA</color>
+    <color name="half_tran">#80000000</color>
+    <color name="identity_pic_student_gray">#9C9C9C</color>
+    <color name="info_tv_gray">#B2B2B2</color>
+    <color name="order_code_gray">#BABABA</color>
+    <color name="search_gray">#F3F3F3</color>
+    <color name="search_hint_gray">#B4B5B5</color>
+</resources>
