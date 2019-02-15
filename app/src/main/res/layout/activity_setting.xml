@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/actionbar"></include>
+    <LinearLayout
+        android:id="@+id/setting_change_password"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:text="修改密码"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_question"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:text="常见问题"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+    <View
+        android:background="@color/payment_line_gray"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"></View>
+    <LinearLayout
+        android:id="@+id/setting_advice"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:text="意见反馈"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_about"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:text="关于宅鹿服务端"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/setting_gray"
+            android:layout_marginRight="15dp"
+            android:textSize="12sp"
+            android:text="版本1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/setting_bt"
+        android:textColor="@color/white"
+        android:text="退出当前账号"
+        android:layout_marginTop="27dp"
+        android:layout_marginRight="65dp"
+        android:layout_marginLeft="65dp"
+        android:background="@drawable/withdrawal_bt_shape"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+</LinearLayout>

@@ -9,9 +9,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.DistributionContract;
-import com.mouqukeji.zhailuserver.model.activity.DistributionModel;
-import com.mouqukeji.zhailuserver.presenter.activity.DistributionPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.DistributionContract;
+import com.mouqukeji.zhailuserver.model.fragment.DistributionModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.DistributionPresenter;
 import com.mouqukeji.zhailuserver.ui.adapter.DistributionAdapter;
 
 import java.util.ArrayList;
@@ -68,23 +68,26 @@ public class DistributionFragment extends BaseFragment<DistributionPresenter, Di
 
     private void initSwipeRefresh() {
         //设置下拉刷新
-        distributionSwiperefreshlayout.setColorSchemeResources(R.color.blue);
-        distributionSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                distributionRecyclerview.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (distributionAdapter != null) {
-                            distributionAdapter.notifyDataSetChanged();
-                            distributionAdapter.setUpFetching(false);
-                            distributionAdapter.setUpFetchEnable(false);
+        if (distributionSwiperefreshlayout!=null) {
+            distributionSwiperefreshlayout.setColorSchemeResources(R.color.blue);
+            distributionSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    distributionRecyclerview.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (distributionAdapter != null) {
+                                distributionAdapter.notifyDataSetChanged();
+                                distributionAdapter.setUpFetching(false);
+                                distributionAdapter.setUpFetchEnable(false);
+                            }
+                            if (distributionSwiperefreshlayout!=null)
+                            distributionSwiperefreshlayout.setRefreshing(false);
                         }
-                        distributionSwiperefreshlayout.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+                    }, 2000);
+                }
+            });
+        }
     }
 
 

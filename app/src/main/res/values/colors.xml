@@ -20,4 +20,21 @@
     <color name="order_code_gray">#BABABA</color>
     <color name="search_gray">#F3F3F3</color>
     <color name="search_hint_gray">#B4B5B5</color>
+    <color name="package_yellow">#FFD500</color>
+    <color name="package_blue">#28338E</color>
+    <color name="package_shape">#FF8B8B</color>
+    <color name="paymentall_gray">#8E8E8E</color>
+    <color name="payment_line_gray">#E5E5E5</color>
+    <color name="payment_info_gray">#E5E5E5</color>
+    <color name="withdrawal_line_gray">#D8D8D8</color>
+    <color name="account_gray">#C3C3C3</color>
+    <color name="balance_hint_gray">#D6D6D6</color>
+    <color name="setting_gray">#A2A2A2</color>
+    <color name="select_gray">#F3F3F3</color>
+    <color name="question_gray">#616161</color>
+    <color name="advice_tv_gray">#CCCCCC</color>
+    <color name="info_gray">#818181</color>
+    <color name="info_line">#E8E8E8</color>
+    <color name="helpbuy_gray">#EAEAEA</color>
+
 </resources>

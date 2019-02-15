@@ -1,5 +1,6 @@
 package com.mouqukeji.zhailuserver.ui.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -10,9 +11,10 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.ReceiptContract;
-import com.mouqukeji.zhailuserver.model.activity.ReceiptModel;
-import com.mouqukeji.zhailuserver.presenter.activity.ReceiptPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.ReceiptContract;
+import com.mouqukeji.zhailuserver.model.fragment.ReceiptModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.ReceiptPresenter;
+import com.mouqukeji.zhailuserver.ui.activity.HelpTakeInfoActivity;
 import com.mouqukeji.zhailuserver.ui.adapter.ReceiptAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class ReceiptFragment extends BaseFragment<ReceiptPresenter, ReceiptModel
 
     @Override
     protected void setUpView() {
+
         //设置假数据
         initData();
         //设置recyclerview
@@ -59,6 +62,14 @@ public class ReceiptFragment extends BaseFragment<ReceiptPresenter, ReceiptModel
          //recyclerview 添加头布局
         View inflate = getLayoutInflater().inflate(R.layout.adapter_receipt_head, null);
         receiptRecyclerviewAdapter.addHeaderView(inflate);
+        //点击接单
+        receiptRecyclerviewAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                Intent intent = new Intent(getMContext(), HelpTakeInfoActivity.class);
+                startActivity(intent);
+            }
+        });
         //设置头部局图片
         ImageView receiptAdIv = inflate.findViewById(R.id.receipt_ad_iv);
         Glide.with(getMContext()).load("https://img.zcool.cn/community/01c40855496e590000019ae939b281.jpg@1280w_1l_2o_100sh.jpg").into(receiptAdIv);

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/actionbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="17dp"
+            android:backgroundTint="@color/blue"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="27dp"
+                    android:text="当前余额"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_weight="1"
+                        android:text="¥50.00"
+                        android:textColor="@color/package_yellow"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/package_tixian_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="33dp"
+                        android:layout_marginBottom="11dp"
+                        android:background="@drawable/package_put_shape"
+                        android:paddingLeft="25dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="25dp"
+                        android:paddingBottom="3dp"
+                        android:text="提现"
+                        android:textColor="@color/package_blue" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/package_shouzhi"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginLeft="16dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:text="收支明细"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/package_tixian"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginLeft="16dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+        <TextView
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:text="提现账户"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="22dp"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/mipmap_next"
+            android:layout_width="11dp"
+            android:layout_height="11dp" />
+    </LinearLayout>
+</LinearLayout>

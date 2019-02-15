@@ -9,9 +9,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.AllOrderContract;
-import com.mouqukeji.zhailuserver.model.activity.AllOrderModel;
-import com.mouqukeji.zhailuserver.presenter.activity.AllOrderPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.AllOrderContract;
+import com.mouqukeji.zhailuserver.model.fragment.AllOrderModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.AllOrderPresenter;
 import com.mouqukeji.zhailuserver.ui.adapter.AllOrderAdapter;
 
 import java.util.ArrayList;
@@ -68,23 +68,26 @@ public class AllOrderFragment extends BaseFragment<AllOrderPresenter, AllOrderMo
 
     private void initSwipeRefresh() {
         //设置下拉刷新
-        allorderSwiperefreshlayout.setColorSchemeResources(R.color.blue);
-        allorderSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                allorderRecyclerview.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (allOrderAdapter != null) {
-                            allOrderAdapter.notifyDataSetChanged();
-                            allOrderAdapter.setUpFetching(false);
-                            allOrderAdapter.setUpFetchEnable(false);
+        if (allorderSwiperefreshlayout!=null) {
+            allorderSwiperefreshlayout.setColorSchemeResources(R.color.blue);
+            allorderSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    allorderRecyclerview.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (allOrderAdapter != null) {
+                                allOrderAdapter.notifyDataSetChanged();
+                                allOrderAdapter.setUpFetching(false);
+                                allOrderAdapter.setUpFetchEnable(false);
+                            }
+                            if (allorderSwiperefreshlayout!=null)
+                            allorderSwiperefreshlayout.setRefreshing(false);
                         }
-                        allorderSwiperefreshlayout.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+                    }, 2000);
+                }
+            });
+        }
     }
 
 

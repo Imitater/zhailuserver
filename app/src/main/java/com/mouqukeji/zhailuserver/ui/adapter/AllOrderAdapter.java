@@ -13,7 +13,7 @@ public class AllOrderAdapter extends BaseQuickAdapter <Integer, BaseViewHolder>{
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, Integer integer) {
+    protected void convert(BaseViewHolder helper, Integer integer) {
 
     }
 

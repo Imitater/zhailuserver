@@ -13,6 +13,6 @@ public interface SelectLocationContract {
     interface Model extends BaseModel {
      }
 
-    abstract class Presenter extends BasePresenter<View, Model> {
+    abstract class Presenter extends BasePresenter<SelectLocationContract.View, SelectLocationContract.Model> {
      }
 }

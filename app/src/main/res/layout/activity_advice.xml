@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+       <include layout="@layout/actionbar"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="请选择您想反馈的问题（必选）"
+                    android:textColor="@color/setting_gray"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/advice_bt_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/dialog_bt_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="19dp"
+                            android:buttonTint="@color/blue"
+                            android:checked="true"
+                            android:scaleX="0.7"
+                            android:scaleY="0.7"></RadioButton>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="使用异常"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/payment_line_gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.25dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/advice_bt_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/dialog_bt_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="19dp"
+                            android:buttonTint="@color/order_code_gray"
+                            android:scaleX="0.7"
+                            android:scaleY="0.7"></RadioButton>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="改进意见"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/payment_line_gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.25dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/advice_bt_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/dialog_bt_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="19dp"
+                            android:buttonTint="@color/order_code_gray"
+                            android:scaleX="0.7"
+                            android:scaleY="0.7"></RadioButton>\
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="添加服务"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/payment_line_gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.25dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/advice_bt_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/dialog_bt_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="19dp"
+                            android:buttonTint="@color/order_code_gray"
+                            android:scaleX="0.7"
+                            android:scaleY="0.7"></RadioButton>\
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="其他"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="请补充详细的建议"
+                    android:textColor="@color/setting_gray"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/advice_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:gravity="top"
+                        android:hint="提出您的建议，让宅鹿变得更好"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="14dp"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:paddingBottom="5dp"
+                            android:id="@+id/text_count"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0/300"
+                            android:textColor="@color/advice_tv_gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="14dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="请提供相关问题相关截图和照片"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/advice_pic_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="16dp"
+                            android:text="/4"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/advice_add_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/background_line"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8">
+
+                        <TextView
+                            android:layout_width="35dp"
+                            android:layout_height="28dp"
+                            android:background="@mipmap/mipmap_camera" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="相机／相册"
+                            android:textColor="#BCBCBC"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/advice_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/withdrawal_bt_shape"
+                    android:text="提交"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#e0000000"
+        android:id="@+id/advice_progress"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:elevation="2dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_marginRight="100dp"
+            android:layout_marginLeft="100dp"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginRight="16dp"
+                android:text="加载中..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ProgressBar
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/L8_progressbar1"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateDrawable="@drawable/progress_anim" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

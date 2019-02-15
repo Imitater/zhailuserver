@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.OrderContract;
-import com.mouqukeji.zhailuserver.model.activity.OrderModel;
-import com.mouqukeji.zhailuserver.presenter.activity.OrderPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.OrderContract;
+import com.mouqukeji.zhailuserver.model.fragment.OrderModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.OrderPresenter;
 import com.mouqukeji.zhailuserver.ui.adapter.OrderAdapter;
 
 import java.util.ArrayList;

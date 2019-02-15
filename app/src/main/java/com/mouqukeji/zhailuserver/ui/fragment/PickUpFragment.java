@@ -9,9 +9,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.PickUpContract;
-import com.mouqukeji.zhailuserver.model.activity.PickUpModel;
-import com.mouqukeji.zhailuserver.presenter.activity.PickUpPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.PickUpContract;
+import com.mouqukeji.zhailuserver.model.fragment.PickUpModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.PickUpPresenter;
 import com.mouqukeji.zhailuserver.ui.adapter.PickUpAdapter;
 
 import java.util.ArrayList;
@@ -69,23 +69,26 @@ public class PickUpFragment extends BaseFragment<PickUpPresenter, PickUpModel> i
 
     private void initSwipeRefresh() {
         //设置下拉刷新
-        pickupSwiperefreshlayout.setColorSchemeResources(R.color.blue);
-        pickupSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                pickupRecyclerview.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (pickUpAdapter != null) {
-                            pickUpAdapter.notifyDataSetChanged();
-                            pickUpAdapter.setUpFetching(false);
-                            pickUpAdapter.setUpFetchEnable(false);
+        if (pickupSwiperefreshlayout!=null) {
+            pickupSwiperefreshlayout.setColorSchemeResources(R.color.blue);
+            pickupSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    pickupRecyclerview.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (pickUpAdapter != null) {
+                                pickUpAdapter.notifyDataSetChanged();
+                                pickUpAdapter.setUpFetching(false);
+                                pickUpAdapter.setUpFetchEnable(false);
+                            }
+                            if (pickupSwiperefreshlayout!=null)
+                            pickupSwiperefreshlayout.setRefreshing(false);
                         }
-                        pickupSwiperefreshlayout.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+                    }, 2000);
+                }
+            });
+        }
     }
 
 

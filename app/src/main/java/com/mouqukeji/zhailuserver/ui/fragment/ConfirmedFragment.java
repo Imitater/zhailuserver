@@ -9,9 +9,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
-import com.mouqukeji.zhailuserver.contract.activity.ConfirmedContract;
-import com.mouqukeji.zhailuserver.model.activity.ConfirmedModel;
-import com.mouqukeji.zhailuserver.presenter.activity.ConfirmedPresenter;
+import com.mouqukeji.zhailuserver.contract.fragment.ConfirmedContract;
+import com.mouqukeji.zhailuserver.model.fragment.ConfirmedModel;
+import com.mouqukeji.zhailuserver.presenter.fragment.ConfirmedPresenter;
 import com.mouqukeji.zhailuserver.ui.adapter.ConfirmedAdapter;
 
 import java.util.ArrayList;
@@ -68,23 +68,26 @@ public class ConfirmedFragment extends BaseFragment<ConfirmedPresenter, Confirme
 
     private void initSwipeRefresh() {
         //设置下拉刷新
-        confirmedSwiperefreshlayout.setColorSchemeResources(R.color.blue);
-        confirmedSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                confirmedRecyclerview.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (confirmedAdapter != null) {
-                            confirmedAdapter.notifyDataSetChanged();
-                            confirmedAdapter.setUpFetching(false);
-                            confirmedAdapter.setUpFetchEnable(false);
+        if (confirmedSwiperefreshlayout!=null) {
+            confirmedSwiperefreshlayout.setColorSchemeResources(R.color.blue);
+            confirmedSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    confirmedRecyclerview.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (confirmedAdapter != null) {
+                                confirmedAdapter.notifyDataSetChanged();
+                                confirmedAdapter.setUpFetching(false);
+                                confirmedAdapter.setUpFetchEnable(false);
+                            }
+                            if (confirmedSwiperefreshlayout!=null)
+                            confirmedSwiperefreshlayout.setRefreshing(false);
                         }
-                        confirmedSwiperefreshlayout.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+                    }, 2000);
+                }
+            });
+        }
     }
 
 

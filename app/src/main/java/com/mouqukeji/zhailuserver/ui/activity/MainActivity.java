@@ -122,8 +122,12 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                 startActivity(intent1);
                 break;
             case 2:
+                Intent intent2 = new Intent(MainActivity.this, PageActivity.class);
+                startActivity(intent2);
                 break;
             case 3:
+                Intent intent3 = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
@@ -132,6 +136,7 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
         mainUserLeft.setOnClickListener(this);
         mainReceiptBt.setOnClickListener(this);
         mainOrderBt.setOnClickListener(this);
+        leftHead.setOnClickListener(this);
     }
 
     private void initDefaul() {
@@ -179,6 +184,10 @@ public class MainActivity extends BaseActivity<MainPresenter, MainModel> impleme
                 mainReceiptBt.setTextColor(getResources().getColor(R.color.main_gray));
                 mainOrderBt.setTextColor(getResources().getColor(R.color.blue));
                 mainViewpager.setCurrentItem(1);
+                break;
+            case R.id.left_head://头像点击
+                Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
+                startActivity(intent);
                 break;
         }
     }

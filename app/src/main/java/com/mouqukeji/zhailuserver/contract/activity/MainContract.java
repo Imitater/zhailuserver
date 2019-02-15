@@ -13,6 +13,6 @@ public interface MainContract {
     interface Model extends BaseModel {
      }
 
-    abstract class Presenter extends BasePresenter<View, Model> {
+    abstract class Presenter extends BasePresenter<MainContract.View, MainContract.Model> {
      }
 }

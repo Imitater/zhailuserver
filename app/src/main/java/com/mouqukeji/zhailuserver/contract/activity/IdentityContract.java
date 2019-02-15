@@ -13,6 +13,6 @@ public interface IdentityContract {
     interface Model extends BaseModel {
      }
 
-    abstract class Presenter extends BasePresenter<View, Model> {
+    abstract class Presenter extends BasePresenter<IdentityContract.View, IdentityContract.Model> {
      }
 }

@@ -40,6 +40,19 @@
             android:name=".ui.activity.SelectLocationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.SelectCityActivity"/>
+        <activity android:name=".ui.activity.PaymentActvitiy"/>
+        <activity android:name=".ui.activity.PageActivity"/>
+        <activity android:name=".ui.activity.PaymentInfoActivity"/>
+        <activity android:name=".ui.activity.WithdrawalActivity"/>
+        <activity android:name=".ui.activity.BalanceActivity"/>
+        <activity android:name=".ui.activity.ChangePwActivity"/>
+        <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.QuestionActivity"/>
+        <activity android:name=".ui.activity.AdviceActivity"/>
+        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".ui.activity.MyInfoActivity"
+            android:theme="@style/TranTheme"/>
+        <activity android:name=".ui.activity.HelpTakeInfoActivity"/>
     </application>
 
 </manifest>
