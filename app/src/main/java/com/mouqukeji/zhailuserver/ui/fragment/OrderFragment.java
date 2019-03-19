@@ -1,9 +1,13 @@
 package com.mouqukeji.zhailuserver.ui.fragment;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
@@ -15,6 +19,8 @@ import com.mouqukeji.zhailuserver.ui.adapter.OrderAdapter;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class OrderFragment extends BaseFragment<OrderPresenter, OrderModel> implements OrderContract.View, View.OnClickListener {
     @BindView(R.id.order_tablayout)

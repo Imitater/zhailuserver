@@ -25,8 +25,7 @@ public abstract class RxObserverListener<T> implements BaseObserverListener<T> {
         errorBean.setMsg(responseThrowable.message);
         errorBean.setCode(responseThrowable.code + "");
         if (mView != null) {
-            mView.showException(errorBean);
-            Toast.makeText(MyApplication.getContext(), responseThrowable.message, Toast.LENGTH_SHORT);
+             Toast.makeText(MyApplication.getContext(), responseThrowable.message, Toast.LENGTH_SHORT);
         }
     }
 

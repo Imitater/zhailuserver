@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-   <include layout="@layout/actionbar"></include>
+    <include layout="@layout/actionbar"></include>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="1.如何下单"
+                android:text="1.订单取消及退款问题"
                 android:textColor="@color/black" />
 
             <ImageView
@@ -51,12 +51,14 @@
                 android:layout_marginRight="25dp"
                 android:background="@mipmap/mipmap_next" />
         </LinearLayout>
+
         <View
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@color/payment_line_gray"
             android:layout_width="match_parent"
-            android:layout_height="0.25dp"/>
+            android:layout_height="0.25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/payment_line_gray" />
+
         <LinearLayout
             android:id="@+id/question_1_item"
             android:layout_width="match_parent"
@@ -82,19 +84,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
-                android:text="1.下载客户端宅鹿APP，点击首页“帮我买”“帮我送”等分类下单  "
+                android:text="订单取消后会进入退款流程，预计1-2个工作日内到账，请关注自己微信或者支付宝交易记录，余额支付用户请关注宅鹿APP-我的钱包中余额变化，如有疑问请联系客服或者公众号留言"
                 android:textColor="@color/question_gray"
                 android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="13dp"
-                android:text="2.微信添加宅鹿小程序，点击“帮我买”“帮我送”下单"
-                android:textColor="@color/question_gray"
-                android:textSize="12sp" />
+
         </LinearLayout>
 
 
@@ -112,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="2.订单取消及退款问题"
+                android:text="2.购买商品费或者快递费收取问题"
                 android:textColor="@color/black" />
 
             <ImageView
@@ -124,66 +118,16 @@
                 android:layout_marginRight="25dp"
                 android:background="@mipmap/mipmap_next" />
         </LinearLayout>
+
         <View
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@color/payment_line_gray"
             android:layout_width="match_parent"
-            android:layout_height="0.25dp"/>
+            android:layout_height="0.25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/payment_line_gray" />
+
         <LinearLayout
             android:id="@+id/question_2_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/select_gray"
-            android:visibility="gone"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="9dp"
-                android:text="订单取消后会进入退款流程，预计1-2个工作日内到账，请关注自己微信或者支付宝交易记录，余额支付用户请关注宅鹿APP-我的钱包中余额变化，如有疑问请联系客服或者公众号留言"
-                android:textColor="@color/question_gray"
-                android:textSize="12sp"
-                 />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/question_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="16dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="3.物品的重量体积怎么测量"
-                android:textColor="@color/black" />
-
-            <ImageView
-                android:id="@+id/question_3_iv"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="25dp"
-                android:background="@mipmap/mipmap_next" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/question_3_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -199,10 +143,9 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginBottom="9dp"
-                android:text="如果您不方便测量，请先进行预估填写，具体以跑男跑女现场确定是否合适，如体积过大，重量过重，跑男跑女可能会要求您加价或者拒绝为您服务，敬请理解，感谢您的支持"
+                android:text="如果存在需要用户额外支付费用，请在确认购买或者快递寄出时，先与用户联系，确认价格，线上支付请填写价格并上传费用凭证，线下收取费用时，请填写价格为0"
                 android:textColor="@color/question_gray"
                 android:textSize="12sp" />
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -45,6 +45,7 @@ public class RetrofitManager {
     private Retrofit retrofit = null;
     //请求头信息
     private final String HEADER_CONNECTION = "keep-alive";
+    private Retrofit mapRetrofit = null;
 
     public static RetrofitManager getInstance() {
         if (mInstance == null) {
@@ -87,9 +88,12 @@ public class RetrofitManager {
         return retrofit;
     }
 
+
+
     public ApiService getRequestService() {
         return getRetrofit().create(ApiService.class);
     }
+
 
     /**
      * 设置公共查询参数
@@ -303,10 +307,18 @@ public class RetrofitManager {
                         if (result.code == 10000) {
                             observerListener.onSuccess(result.data);
                         } else if (result.code == 10006) {
-                            observerListener.onBeing();
+                            observerListener.onReLoad();
                         } else if (result.code == 10005) {
                             observerListener.onReLoad();
-                        } else {
+                        } else if (result.code == 10029) {
+                            observerListener.onReLoad();
+                        } else if (result.code == 10018) {
+                            observerListener.onBeing();
+                        } else if (result.code == 10026) {
+                            observerListener.onBeing();
+                        } else if (result.message.equals("可提现余额不足")){
+                            observerListener.onReLoad();
+                        }else {
                             ErrorBean errorBean = new ErrorBean();
                             errorBean.setCode(result.code + "");
                             errorBean.setMsg(result.message);
@@ -326,6 +338,11 @@ public class RetrofitManager {
                 });
 
     }
+
+    /**
+     * 建立请求
+     */
+
 
 //    /**
 //     * 未封装统一的数据格式情形

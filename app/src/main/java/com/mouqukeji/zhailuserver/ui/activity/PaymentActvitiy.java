@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.PaymentDetailsBean;
 import com.mouqukeji.zhailuserver.contract.activity.PaymentContract;
 import com.mouqukeji.zhailuserver.model.activity.PaymentModel;
 import com.mouqukeji.zhailuserver.presenter.activity.PaymentPresenter;
@@ -16,6 +17,7 @@ import com.mouqukeji.zhailuserver.ui.adapter.PaymentPagerAdapter;
 import com.mouqukeji.zhailuserver.ui.fragment.IncomeFragment;
 import com.mouqukeji.zhailuserver.ui.fragment.PaymentAllFragment;
 import com.mouqukeji.zhailuserver.ui.fragment.WithdrawalFragment;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public class PaymentActvitiy extends BaseActivity<PaymentPresenter, PaymentModel
     ViewPager paymentViewpager;
     List<Fragment> fragmentList=new ArrayList();
     List<String> fragmentTitle=new ArrayList();
+
     @Override
     protected void initViewAndEvents() {
 
@@ -82,5 +85,6 @@ public class PaymentActvitiy extends BaseActivity<PaymentPresenter, PaymentModel
                 break;
         }
     }
+
 
 }

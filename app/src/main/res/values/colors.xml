@@ -36,5 +36,9 @@
     <color name="info_gray">#818181</color>
     <color name="info_line">#E8E8E8</color>
     <color name="helpbuy_gray">#EAEAEA</color>
-
+    <color name="checkcode_gray">#B6B6B6</color>
+    <color name="sign_in_gray">#4bf2f2f2</color>
+    <color name="consumption_gry">#EEEEEE</color>
+    <color name="order_gray">#F7F7F7</color>
+    <color name="green">#17A252</color>
 </resources>

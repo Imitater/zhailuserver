@@ -58,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
+                android:inputType="number"
                 android:textSize="12sp"
                 android:id="@+id/account_number"
                 android:background="@android:color/transparent"

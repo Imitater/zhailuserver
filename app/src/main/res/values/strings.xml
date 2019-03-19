@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">zhailuserver</string>
+    <string name="app_name">宅鹿服务端</string>
     <string name="open">open</string>
     <string name="close">close</string>
 </resources>

@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.BalanceBean;
 import com.mouqukeji.zhailuserver.contract.activity.PageContract;
 import com.mouqukeji.zhailuserver.model.activity.PackModel;
 import com.mouqukeji.zhailuserver.presenter.activity.PagePresenter;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,10 +30,14 @@ public class PageActivity extends BaseActivity<PagePresenter, PackModel> impleme
     LinearLayout packageTixian;
     @BindView(R.id.package_tixian_bt)
     TextView packageTixianBt;
+    @BindView(R.id.package_balance)
+    TextView packageBalance;
+    private String spUserID;
 
     @Override
     protected void initViewAndEvents() {
-
+        spUserID = new GetSPData().getSPUserID(this);
+        mMvpPresenter.getBalance(spUserID,mMultipleStateView);
     }
 
     @Override
@@ -73,11 +79,21 @@ public class PageActivity extends BaseActivity<PagePresenter, PackModel> impleme
                 Intent intent1 = new Intent(PageActivity.this, WithdrawalActivity.class);
                 startActivity(intent1);
                 break;
-            case R.id.package_tixian_bt:
+            case R.id.package_tixian_bt://提现
                 Intent intent2 = new Intent(PageActivity.this, BalanceActivity.class);
                 startActivity(intent2);
                 break;
         }
     }
 
+    @Override
+    public void getBalance(BalanceBean balanceBean) {
+        packageBalance.setText(balanceBean.getBalance());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        mMvpPresenter.getBalance(spUserID,mMultipleStateView);
+    }
 }

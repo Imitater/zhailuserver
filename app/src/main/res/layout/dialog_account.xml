@@ -3,67 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
+
     <LinearLayout
-        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
         android:layout_marginLeft="10dp"
-        android:orientation="vertical"
+        android:layout_marginRight="10dp"
         android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="360dp">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="11dp"
-            android:text="请选择到账支付宝"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/dialog_account_close"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentRight="true"
-            android:background="@mipmap/mipmap_close"
-            android:scaleX="0.5"
-            android:scaleY="0.5" />
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="11dp"
+                android:text="请选择到账支付宝"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/payment_line_gray"></View>
+            <ImageView
+                android:id="@+id/dialog_account_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/mipmap_close"
+                android:scaleX="0.5"
+                android:scaleY="0.5" />
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/payment_line_gray"></View>
 
         <TextView
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:paddingBottom="19dp"
-            android:paddingTop="19dp"
             android:id="@+id/dialog_account_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
             android:gravity="center"
+            android:paddingTop="19dp"
+            android:paddingBottom="19dp"
             android:text="添加支付宝提现账号"
             android:textColor="@color/black"
             android:textSize="16sp" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/dialog_account_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"></android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

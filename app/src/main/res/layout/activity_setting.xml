@@ -23,8 +23,8 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/setting_question"
@@ -46,8 +46,8 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
     <View
         android:background="@color/payment_line_gray"
@@ -74,8 +74,8 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/setting_about"
@@ -94,6 +94,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/setting_version"
             android:textColor="@color/setting_gray"
             android:layout_marginRight="15dp"
             android:textSize="12sp"
@@ -104,8 +105,8 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
     <Button
         android:id="@+id/setting_bt"

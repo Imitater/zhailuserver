@@ -40,6 +40,7 @@ import com.mouqukeji.zhailuserver.presenter.activity.SelectLocationPresenter;
 import com.mouqukeji.zhailuserver.utils.GeoCoderUtil;
 import com.mouqukeji.zhailuserver.utils.InputTipTask;
 import com.mouqukeji.zhailuserver.utils.PoiSearchTask;
+import com.mouqukeji.zhailuserver.utils.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ public class SelectLocationActivity extends BaseActivity<SelectLocationPresenter
     @Override
     protected void setUpView() {
         actionTitle.setText("选择地址");
-        city = "杭州";
+        city = SpUtils.getString("city",this);
         //定位初始化
         init();
         initListener();

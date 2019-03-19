@@ -1,13 +1,16 @@
 package com.mouqukeji.zhailuserver.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
@@ -16,10 +19,12 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.IdentityBean;
 import com.mouqukeji.zhailuserver.contract.activity.IdentityContract;
 import com.mouqukeji.zhailuserver.model.activity.IdentityModel;
 import com.mouqukeji.zhailuserver.presenter.activity.IdentityPresenter;
 import com.mouqukeji.zhailuserver.utils.DateUtils;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
 import com.mouqukeji.zhailuserver.utils.TokenHelper;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -31,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityModel> implements IdentityContract.View, View.OnClickListener {
 
@@ -73,8 +79,11 @@ public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityMo
     RelativeLayout identityStudentIv2;
     @BindView(R.id.info_progress)
     LinearLayout infoProgress;
+    @BindView(R.id.identity_bt)
+    Button identityBt;
     private int type;
     List<LocalMedia> list = new ArrayList<>();
+    private String spUserID;
 
     @Override
     protected void initViewAndEvents() {
@@ -88,6 +97,7 @@ public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityMo
 
     @Override
     protected void setUpView() {
+        spUserID = new GetSPData().getSPUserID(this);
         //设置title
         actionTitle.setText("身份认证");
         initListener();
@@ -100,6 +110,7 @@ public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityMo
         identityStudentIv1.setOnClickListener(this);
         identityStudentIv2.setOnClickListener(this);
         actionBack.setOnClickListener(this);
+        identityBt.setOnClickListener(this);
     }
 
     @Override
@@ -129,6 +140,9 @@ public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityMo
                 break;
             case R.id.action_back:
                 finish();
+                break;
+            case R.id.identity_bt:
+                mMvpPresenter.identityCertification(spUserID,dentityName.getText().toString(),identitySchool.getText().toString(),identityIdentityNumber.getText().toString(),mMultipleStateView);
                 break;
         }
     }
@@ -218,6 +232,12 @@ public class IdentityActivity extends BaseActivity<IdentityPresenter, IdentityMo
                 Glide.with(this).load(url).into(identityStudentBackIm);
                 break;
         }
+    }
+
+
+    @Override
+    public void identityCertification(IdentityBean bean) {
+        Toast.makeText(this,"身份认证成功",Toast.LENGTH_SHORT).show();
     }
 
 

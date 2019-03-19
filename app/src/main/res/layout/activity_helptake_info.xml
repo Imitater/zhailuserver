@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -33,6 +34,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/helptake_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¥2.00"
@@ -68,14 +70,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="29dp"
-                        android:text="和二饭"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
 
                     <ImageView
+                        android:id="@+id/helptake_phone"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
                         android:layout_marginLeft="20dp"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/mipmap_call" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -98,9 +101,8 @@
                         android:layout_marginLeft="17dp"
                         android:layout_marginRight="17dp"
                         android:layout_marginBottom="10dp"
-                        android:text="浙江省杭州市江干区下沙杭州 电子科技大学101女生宿舍"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textColor="@color/blue"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -134,7 +136,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -165,11 +168,7 @@
                             android:layout_marginTop="16dp"
                             android:text="配送时间" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="性别要求" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -180,43 +179,38 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:layout_marginTop="2sp"
+                            android:textSize="12sp"
                             android:id="@+id/helptake_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="服饰（小于3kg）"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:textSize="12sp"
                             android:id="@+id/helptake_code"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="12545414"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
 
                         <TextView
+                             android:textSize="12sp"
                             android:id="@+id/helptake_send_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="中通快递"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
 
                         <TextView
+                             android:textSize="12sp"
                             android:id="@+id/helptake_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="2018-11-11 12:14"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
 
-                        <TextView
-                            android:id="@+id/helptake_sex"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="男女不限"
-                            android:textColor="@color/black" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -238,11 +232,11 @@
                         android:text="备注:" />
 
                     <TextView
+                        android:textSize="12sp"
                         android:id="@+id/helptake_remake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="需小心对待" />
+                        android:layout_marginLeft="30dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -253,21 +247,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="订单号:" />
 
                     <TextView
+                        android:textSize="12sp"
                         android:id="@+id/helptake_code_number"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12521524523645" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="14dp"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -278,38 +272,38 @@
                         android:text="创建时间:" />
 
                     <TextView
+                        android:textSize="12sp"
                         android:id="@+id/helptake_creattime"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2018－11-11 12:00" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
+                android:layout_marginBottom="100dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/helptake_left"
-                    android:background="@drawable/button_pay_shape_left"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_weight="1"
+                    android:background="@drawable/button_pay_shape_left"
                     android:text="返回接单"
                     android:textColor="@color/blue" />
 
                 <Button
                     android:id="@+id/helptake_right"
-                    android:background="@drawable/withdrawal_bt_shape"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="28dp"
                     android:layout_marginRight="40dp"
                     android:layout_weight="1"
+                    android:background="@drawable/withdrawal_bt_shape"
                     android:text="已取件"
                     android:textColor="@color/white" />
             </LinearLayout>

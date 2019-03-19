@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -33,6 +34,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/helpsend_pricke"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¥2.00"
@@ -50,102 +52,174 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_marginLeft="29dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:layout_marginTop="30dp"
-                        android:background="@mipmap/ic_launcher"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp" />
-                    <ImageView
-                        android:layout_marginBottom="30dp"
-                        android:layout_marginTop="60dp"
-                        android:background="@mipmap/ic_launcher"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
-                  <LinearLayout
-                      android:gravity="center_vertical"
-                      android:orientation="vertical"
-                      android:layout_width="match_parent"
-                      android:layout_height="0dp"
-                      android:layout_weight="1">
-                      <LinearLayout
-                          android:layout_marginLeft="29dp"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
-                      <TextView
-                           android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="和二饭"
-                          android:textColor="@color/black" />
+                    android:layout_marginLeft="29dp"
+                    android:orientation="vertical">
 
-                      <ImageView
-                          android:layout_width="22dp"
-                          android:layout_height="22dp"
-                          android:layout_marginLeft="20dp"
-                          android:background="@mipmap/ic_launcher" />
-                      </LinearLayout>
-                      <TextView
-                          android:layout_marginLeft="29dp"
-                           android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginRight="17dp"
-                           android:text="浙江省杭州市江干区下沙杭州 电子科技大学101女生宿舍"
-                          android:textColor="@color/black"
-                          android:textSize="14sp" />
-                  </LinearLayout>
-                    <View
-                        android:layout_marginRight="10dp"
-
-                        android:background="@color/info_line"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="寄"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/deliver_green_shape" />
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
+                        android:layout_height="60dp">
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_green_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                        <TextView
+                            android:layout_marginTop="6dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_green_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                        <TextView
+                            android:layout_marginTop="6dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_green_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                        <TextView
+                            android:layout_marginTop="6dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_red_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                        <TextView
+                            android:layout_marginTop="6dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_red_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/circle_red_shape"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp" />
+                    </LinearLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="收"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                         android:layout_marginBottom="30dp"
+                        android:background="@drawable/deliver_red_shape" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
                         <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="29dp"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:orientation="vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/helpsend_top_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <ImageView
+                                android:id="@+id/helpsend_top_phone"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginLeft="20dp"
+                                android:background="@mipmap/mipmap_call" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:id="@+id/helpsend_top_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="29dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="17dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.25dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/info_line"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
                             <LinearLayout
-                                android:layout_marginLeft="29dp"
-                                android:orientation="horizontal"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="29dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
                                 <TextView
-                                     android:layout_width="wrap_content"
+                                    android:textSize="12sp"
+                                    android:id="@+id/helpsend_bottom_name"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="和二饭"
                                     android:textColor="@color/black" />
 
                                 <ImageView
+                                    android:id="@+id/helpsend_bottom_phone"
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
                                     android:layout_marginLeft="20dp"
-                                    android:background="@mipmap/ic_launcher" />
+                                    android:background="@mipmap/mipmap_call" />
                             </LinearLayout>
+
                             <TextView
+                                android:id="@+id/helpsend_bottom_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
                                 android:layout_marginLeft="29dp"
-                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginRight="17dp"
-                                android:text="浙江省杭州市江干区下沙杭州 电子科技大学101女生宿舍"
+                                android:layout_marginBottom="11dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
                                 android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -179,9 +253,9 @@
                     android:background="@color/info_line"></View>
 
                 <LinearLayout
-                    android:layout_marginTop="13dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -199,25 +273,28 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="商品价格" />
+                            android:text="付款方式" />
+
+                        <TextView
+                            android:id="@+id/helpsend_send_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="邮费价格" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="购买地址" />
+                            android:text="快递点" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="配送时间" />
+                            android:text="揽件时间" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="性别要求" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -228,58 +305,66 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/helptake_type"
+                            android:layout_marginTop="2sp"
+                            android:textSize="12sp"
+                            android:id="@+id/helpsend_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要购买一包泡面"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:textSize="12sp"
+                            android:id="@+id/helpsend_payway"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
 
                         <LinearLayout
+                            android:id="@+id/helpsend_send_price_ll"
                             android:layout_width="wrap_content"
-
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/helptake_code"
+                                android:textSize="12sp"
+                                android:id="@+id/helpsend_deliver_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="20元（已支付）"
+                                android:layout_marginTop="18dp"
                                 android:textColor="@color/black" />
 
                             <TextView
-                                android:id="@+id/helpbuy_check"
+                                android:textSize="12sp"
+                                android:id="@+id/helpsend_deliver_check"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
+                                android:layout_marginTop="18dp"
                                 android:text="查看凭证"
-                                android:textColor="@color/blue" />
+                                android:textColor="@color/blue"
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/helptake_send_type"
+                            android:textSize="12sp"
+                            android:id="@+id/helpsend_point"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="江南星座a座楼下十足便利店"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
 
-                        <TextView
-                            android:id="@+id/helptake_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="今天 12:14"
-                            android:textColor="@color/black" />
 
                         <TextView
-                            android:id="@+id/helptake_sex"
+                            android:textSize="12sp"
+                            android:id="@+id/helpsend_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="男女不限"
+                            android:layout_marginTop="18dp"
                             android:textColor="@color/black" />
+
+
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -301,11 +386,11 @@
                         android:text="备注:" />
 
                     <TextView
-                        android:id="@+id/helptake_remake"
+                        android:textSize="12sp"
+                        android:id="@+id/helpsend_remake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="需小心对待" />
+                        android:layout_marginLeft="30dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -321,16 +406,16 @@
                         android:text="订单号:" />
 
                     <TextView
-                        android:id="@+id/helptake_code_number"
+                        android:textSize="12sp"
+                        android:id="@+id/helpsend_code_number"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12521524523645" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="14dp"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -341,10 +426,10 @@
                         android:text="创建时间:" />
 
                     <TextView
-                        android:id="@+id/helptake_creattime"
+                        android:textSize="12sp"
+                        android:id="@+id/helpsend_creattime"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2018－11-11 12:00" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -356,20 +441,20 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/helptake_left"
+                    android:id="@+id/helpsend_left"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_pay_shape_left"
                     android:text="返回接单"
                     android:textColor="@color/blue" />
 
                 <Button
-                    android:id="@+id/helptake_right"
+                    android:id="@+id/helpsend_right"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="28dp"
                     android:layout_marginRight="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/withdrawal_bt_shape"

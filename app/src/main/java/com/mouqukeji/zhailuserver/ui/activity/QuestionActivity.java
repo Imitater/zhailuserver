@@ -28,13 +28,7 @@ public class QuestionActivity extends BaseActivity<QuestionPresenter, QuestionMo
     LinearLayout question2;
     @BindView(R.id.question_2_item)
     LinearLayout question2Item;
-    @BindView(R.id.question_3_iv)
-    ImageView question3Iv;
-    @BindView(R.id.question_3)
-    LinearLayout question3;
-    @BindView(R.id.question_3_item)
-    LinearLayout question3Item;
-    @BindView(R.id.action_back)
+     @BindView(R.id.action_back)
     View actionBack;
     @BindView(R.id.action_title)
     TextView actionTitle;
@@ -62,8 +56,7 @@ public class QuestionActivity extends BaseActivity<QuestionPresenter, QuestionMo
     private void setListener() {
         question1.setOnClickListener(this);
         question2.setOnClickListener(this);
-        question3.setOnClickListener(this);
-        actionBack.setOnClickListener(this);
+         actionBack.setOnClickListener(this);
     }
 
     @Override
@@ -81,21 +74,17 @@ public class QuestionActivity extends BaseActivity<QuestionPresenter, QuestionMo
                     question3flag = false;
                     question1Item.setVisibility(View.VISIBLE);
                     question2Item.setVisibility(View.GONE);
-                    question3Item.setVisibility(View.GONE);
-                    question1Iv.setBackgroundResource(R.mipmap.mipmap_question_down);
+                     question1Iv.setBackgroundResource(R.mipmap.mipmap_question_down);
                     question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                } else {
+                 } else {
                     question1flag = false;
                     question2flag = false;
                     question3flag = false;
                     question1Item.setVisibility(View.GONE);
                     question2Item.setVisibility(View.GONE);
-                    question3Item.setVisibility(View.GONE);
-                    question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
+                     question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
                     question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                }
+                 }
                 break;
             case R.id.question_2://问题2
                 if (!question2flag) {
@@ -104,45 +93,19 @@ public class QuestionActivity extends BaseActivity<QuestionPresenter, QuestionMo
                     question3flag = false;
                     question2Item.setVisibility(View.VISIBLE);
                     question1Item.setVisibility(View.GONE);
-                    question3Item.setVisibility(View.GONE);
-                    question2Iv.setBackgroundResource(R.mipmap.mipmap_question_down);
+                     question2Iv.setBackgroundResource(R.mipmap.mipmap_question_down);
                     question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                } else {
+                 } else {
                     question2flag = false;
                     question1flag = false;
                     question3flag = false;
                     question2Item.setVisibility(View.GONE);
                     question1Item.setVisibility(View.GONE);
-                    question3Item.setVisibility(View.GONE);
-                    question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
+                     question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
                     question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                }
+                 }
                 break;
-            case R.id.question_3://问题3
-                if (!question3flag) {
-                    question2flag = false;
-                    question1flag = false;
-                    question3flag = true;
-                    question3Item.setVisibility(View.VISIBLE);
-                    question1Item.setVisibility(View.GONE);
-                    question2Item.setVisibility(View.GONE);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_question_down);
-                    question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                } else {
-                    question3flag = false;
-                    question2flag = false;
-                    question1flag = false;
-                    question3Item.setVisibility(View.GONE);
-                    question1Item.setVisibility(View.GONE);
-                    question2Item.setVisibility(View.GONE);
-                    question3Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question1Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                    question2Iv.setBackgroundResource(R.mipmap.mipmap_next);
-                }
-                break;
+
             case R.id.action_back:
                 finish();
                 break;

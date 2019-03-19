@@ -3,32 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:scaleType="fitXY"
-        android:id="@+id/myinfo_backage"
-        android:background="@mipmap/ic_launcher"
-        android:layout_width="match_parent"
-        android:layout_height="165dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="275dp">
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/myinfo_backage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/myinfo_head"
+            android:layout_marginTop="100dp"
             android:elevation="4dp"
             app:civ_border_color="@color/white"
             app:civ_border_width="2dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="118dp"
-            android:layout_width="96dp"
+             android:layout_gravity="center"
+             android:layout_width="96dp"
             android:layout_height="96dp" />
         <TextView
+            android:id="@+id/myinfo_name"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:text="和二饭"
-            android:layout_width="wrap_content"
+             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
             android:id="@+id/myinfo_edit"
@@ -55,9 +61,9 @@
                 android:layout_width="11dp"
                 android:layout_height="11dp" />
         </LinearLayout>
+        </LinearLayout>
+        </RelativeLayout>
         <LinearLayout
-            android:paddingBottom="40dp"
-            android:layout_marginTop="8dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:elevation="1dp"
@@ -101,6 +107,44 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:paddingBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:elevation="1dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:text=""
+                android:id="@+id/myinfo_order_count"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:text=""
+                android:id="@+id/myinfo_ontime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:text=""
+                android:id="@+id/myinfo_score"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/myinfo_user_evaluation"
             android:layout_marginTop="8dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"

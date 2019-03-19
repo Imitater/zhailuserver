@@ -5,15 +5,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.EditPasswordBean;
+import com.mouqukeji.zhailuserver.bean.ResetPasswordBean;
 import com.mouqukeji.zhailuserver.contract.activity.ChangePwContract;
 import com.mouqukeji.zhailuserver.model.activity.ChangePwModel;
 import com.mouqukeji.zhailuserver.presenter.activity.ChangePwPresenter;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
+
 import butterknife.BindView;
 
 public class ChangePwActivity extends BaseActivity<ChangePwPresenter, ChangePwModel> implements ChangePwContract.View, View.OnClickListener {
-      @BindView(R.id.imageButton)
+    @BindView(R.id.imageButton)
     ImageView imageButton;
     @BindView(R.id.textView2)
     TextView textView2;
@@ -28,13 +34,21 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter, ChangePwMo
     @BindView(R.id.button_change)
     Button buttonChange;
     private String oldPassword;
+    private String spUserID;
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.imageButton:
                 finish();
+                break;
+            case R.id.button_change:
+                if (editText1.getText().toString().equals(editText2.getText().toString())) {
+                    Toast.makeText(this, "新旧密码不能相同", Toast.LENGTH_SHORT).show();
+                } else {
+                    mMvpPresenter.editPassword(spUserID, editText1.getText().toString(), editText2.getText().toString(), mMultipleStateView);
+                }
                 break;
         }
     }
@@ -51,11 +65,13 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter, ChangePwMo
 
     @Override
     protected void setUpView() {
+        spUserID = new GetSPData().getSPUserID(this);
         initListener();
     }
 
     private void initListener() {
         imageButton.setOnClickListener(this);
+        buttonChange.setOnClickListener(this);
     }
 
     @Override
@@ -64,4 +80,9 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter, ChangePwMo
     }
 
 
+    @Override
+    public void editPassword(EditPasswordBean bean) {
+        Toast.makeText(this, "修改密码成功", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }

@@ -13,6 +13,7 @@ import com.mouqukeji.zhailuserver.contract.activity.SettingContract;
 import com.mouqukeji.zhailuserver.model.activity.SettingModel;
 import com.mouqukeji.zhailuserver.presenter.activity.SettingPresenter;
 import com.mouqukeji.zhailuserver.utils.LoginQuit;
+import com.mouqukeji.zhailuserver.utils.PhoneUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,8 @@ public class SettingActivity extends BaseActivity<SettingPresenter, SettingModel
     LinearLayout settingAbout;
     @BindView(R.id.setting_bt)
     Button settingBt;
+    @BindView(R.id.setting_version)
+    TextView settingVersion;
 
     @Override
     protected void initViewAndEvents() {
@@ -48,6 +51,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter, SettingModel
     @Override
     protected void setUpView() {
         actionTitle.setText("系统设置");
+        settingVersion.setText("版本"+PhoneUtils.getVersionName(this));
         initListener();
     }
 
@@ -67,7 +71,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter, SettingModel
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.action_back:
                 finish();
                 break;

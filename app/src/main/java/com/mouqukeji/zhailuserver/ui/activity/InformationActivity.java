@@ -10,19 +10,27 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.InfoBean;
+import com.mouqukeji.zhailuserver.bean.UserInfoUpBean;
 import com.mouqukeji.zhailuserver.contract.activity.InfomationContract;
 import com.mouqukeji.zhailuserver.model.activity.InformationModel;
 import com.mouqukeji.zhailuserver.presenter.activity.InfomationPresenter;
 import com.mouqukeji.zhailuserver.ui.widget.CenterDialogView;
 import com.mouqukeji.zhailuserver.utils.DateUtils;
+import com.mouqukeji.zhailuserver.utils.EventCode;
+import com.mouqukeji.zhailuserver.utils.EventMessage;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
+import com.mouqukeji.zhailuserver.utils.KeyUtils;
 import com.mouqukeji.zhailuserver.utils.TokenHelper;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -35,6 +43,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.mouqukeji.zhailuserver.utils.EventBusUtils.post;
+
 public class InformationActivity extends BaseActivity<InfomationPresenter, InformationModel> implements InfomationContract.View, View.OnClickListener {
     @BindView(R.id.action_back)
     View actionBack;
@@ -57,11 +68,14 @@ public class InformationActivity extends BaseActivity<InfomationPresenter, Infor
     @BindView(R.id.info_progress)
     LinearLayout infoProgress;
     List<LocalMedia> list = new ArrayList<>();
-    private String sex="0";
+    private String sex = "0";
+    private String spUserID;
+    private String url;
 
     @Override
     protected void initViewAndEvents() {
-
+        spUserID = new GetSPData().getSPUserID(this);
+        mMvpPresenter.getInfo(spUserID,mMultipleStateView);
     }
 
     @Override
@@ -92,12 +106,12 @@ public class InformationActivity extends BaseActivity<InfomationPresenter, Infor
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.action_back:
                 finish();
                 break;
             case R.id.action_save://保存
-
+                mMvpPresenter.putUserInfo(spUserID,infoName.getText().toString(),sex,infoSchool.getText().toString(),url,mMultipleStateView);
                 break;
             case R.id.info_head://头像
                 setHead();
@@ -144,6 +158,7 @@ public class InformationActivity extends BaseActivity<InfomationPresenter, Infor
                 .isDragFrame(true)// 是否可拖动裁剪框(固定)
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,19 +184,20 @@ public class InformationActivity extends BaseActivity<InfomationPresenter, Infor
             }
         }
     }
+
     //上传图片到九牛
     public void uploadImgSignQiNiu(final String path) {
         int num = (int) ((Math.random() * 9 + 1) * 100000);
         String key = "icon_" + num + DateUtils.getData();
-        TokenHelper tokenHelper = TokenHelper.create("Nwz4XdKR-G777FoMf-DrjaySeCWvjiwv7gd4sIm1", "aZkyjMBELmPthFf-60rwJQKR0eXYazHydDG8uF4H");
-        String token = tokenHelper.getToken("mouqukeji");
+        TokenHelper tokenHelper = TokenHelper.create(KeyUtils.Access_Key, KeyUtils.Secret_Key);
+        String token = tokenHelper.getToken(KeyUtils.Bucket);
         UploadManager uploadManager = new UploadManager();
         uploadManager.put(path, key, token, new UpCompletionHandler() {
             @Override
             public void complete(String key, ResponseInfo info, JSONObject res) {
                 //res包含hash、key等信息，具体字段取决于上传策略的设置
                 if (info.isOK()) {
-                    String url = "http://picture.mouqukeji.com/" + key;
+                    url = KeyUtils.Base_Url+ key;
                     Glide.with(InformationActivity.this).load(url).into(infoHead);//显示头像
                     infoProgress.setVisibility(View.GONE);
                 } else {
@@ -301,4 +317,35 @@ public class InformationActivity extends BaseActivity<InfomationPresenter, Infor
         dialogInfoDefaulInfoBt.setButtonTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.blue)));
     }
 
+
+    @Override
+    public void getInfo(InfoBean bean) {
+        sex=bean.getUserInfo().getGender();
+        if (sex.equals("0")){
+            infoSex.setText("保密");
+        }else if (sex.equals("1")){
+            infoSex.setText("男");
+        }else {
+            infoSex.setText("女");
+        }
+        infoSchool.setText(bean.getUserInfo().getSchool_name());
+        Glide.with(this).load(bean.getUserInfo().getAvatar()).into(infoHead);
+        infoName.setText(bean.getUserInfo().getNickname());
+        url = bean.getUserInfo().getAvatar();
+    }
+
+    @Override
+    protected boolean isRegisteredEventBus() {
+        return true;
+    }
+
+    @Override
+    public void putUserInfo(UserInfoUpBean bean) {
+        PictureFileUtils.deleteCacheDirFile(InformationActivity.this);
+        //发送消息
+        EventMessage eventMessage = new EventMessage(EventCode.EVENT_B, 1);
+        post(eventMessage);
+        Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }

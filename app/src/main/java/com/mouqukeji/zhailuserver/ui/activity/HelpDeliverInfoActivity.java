@@ -1,42 +1,36 @@
 package com.mouqukeji.zhailuserver.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
+import com.amap.api.maps2d.model.LatLng;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.ConfirmFinishBean;
+import com.mouqukeji.zhailuserver.bean.ConfirmGetBuyBean;
+import com.mouqukeji.zhailuserver.bean.ConfirmServiceBean;
+import com.mouqukeji.zhailuserver.bean.DeliverOrderInfoBean;
 import com.mouqukeji.zhailuserver.contract.activity.HelpDeliverInfoContract;
-import com.mouqukeji.zhailuserver.contract.activity.HelpSendInfoContract;
 import com.mouqukeji.zhailuserver.model.activity.HelpDeliverInfoModel;
-import com.mouqukeji.zhailuserver.model.activity.HelpSendInfoModel;
 import com.mouqukeji.zhailuserver.presenter.activity.HelpDeliverInfoPresenter;
-import com.mouqukeji.zhailuserver.presenter.activity.HelpSendInfoPresenter;
-import com.mouqukeji.zhailuserver.ui.widget.CenterDialogView;
-import com.mouqukeji.zhailuserver.utils.DateUtils;
-import com.mouqukeji.zhailuserver.utils.TokenHelper;
-import com.qiniu.android.http.ResponseInfo;
-import com.qiniu.android.storage.UpCompletionHandler;
-import com.qiniu.android.storage.UploadManager;
-
-import org.json.JSONObject;
+import com.mouqukeji.zhailuserver.utils.DialogUtils;
+import com.mouqukeji.zhailuserver.utils.EventCode;
+import com.mouqukeji.zhailuserver.utils.EventMessage;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
+import com.mouqukeji.zhailuserver.utils.OpenLocalMapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.mouqukeji.zhailuserver.utils.EventBusUtils.post;
 
 public class HelpDeliverInfoActivity extends BaseActivity<HelpDeliverInfoPresenter, HelpDeliverInfoModel> implements HelpDeliverInfoContract.View, View.OnClickListener {
 
@@ -47,27 +41,66 @@ public class HelpDeliverInfoActivity extends BaseActivity<HelpDeliverInfoPresent
     TextView actionTitle;
     @BindView(R.id.action_save)
     TextView actionSave;
-    @BindView(R.id.helptake_type)
-    TextView helptakeType;
-    @BindView(R.id.helptake_code)
-    TextView helptakeCode;
-    @BindView(R.id.helptake_sex)
-    TextView helptakeSex;
-    @BindView(R.id.helptake_remake)
-    TextView helptakeRemake;
-    @BindView(R.id.helptake_code_number)
-    TextView helptakeCodeNumber;
-    @BindView(R.id.helptake_creattime)
-    TextView helptakeCreattime;
-    @BindView(R.id.helptake_left)
-    Button helptakeLeft;
-    @BindView(R.id.helptake_right)
-    Button helptakeRight;
-
+    @BindView(R.id.helpdeliver_price)
+    TextView helpdeliverPrice;
+    @BindView(R.id.helpdeliver_top_name)
+    TextView helpdeliverTopName;
+    @BindView(R.id.helpdeliver_top_phone)
+    ImageView helpdeliverTopPhone;
+    @BindView(R.id.helpdeliver_top_address)
+    TextView helpdeliverTopAddress;
+    @BindView(R.id.helpdeliver_bottom_name)
+    TextView helpdeliverBottomName;
+    @BindView(R.id.helpdeliver_bottom_phone)
+    ImageView helpdeliverBottomPhone;
+    @BindView(R.id.helpdeliver_bottom_address)
+    TextView helpdeliverBottomAddress;
+    @BindView(R.id.helpdeliver_type)
+    TextView helpdeliverType;
+    @BindView(R.id.helpdeliver_time)
+    TextView helpdeliverTime;
+    @BindView(R.id.helpdeliver_remake)
+    TextView helpdeliverRemake;
+    @BindView(R.id.helpdeliver_code_number)
+    TextView helpdeliverCodeNumber;
+    @BindView(R.id.helpdeliver_creattime)
+    TextView helpdeliverCreattime;
+    @BindView(R.id.helpdeliver_left)
+    Button helpdeliverLeft;
+    @BindView(R.id.helpdeliver_right)
+    Button helpdeliverRight;
+    private String progress;
+    private String order_id;
+    private String spUserID;
+    private String url = "";
+    private String money = "-1";
+    private String start_telephone;
+    private String telephone;
+    private long sid;
+    private String end_address;
+    private String end_lng;
+    private String end_lat;
+    private String start_address;
+    private String start_lng;
+    private String start_lat;
 
     @Override
     protected void initViewAndEvents() {
-
+        Intent intent = getIntent();
+        spUserID = new GetSPData().getSPUserID(this);
+        order_id = intent.getStringExtra("order_id");
+        String cate_id = intent.getStringExtra("cate_id");
+        progress = intent.getStringExtra("progress");
+        if (progress.equals("3")) {
+            helpdeliverRight.setText("确认取件");
+        } else if (progress.equals("8")) {
+            helpdeliverRight.setText("确认送达");
+        } else if (progress.equals("9")) {
+            helpdeliverRight.setText("确认完成");
+        } else {
+            helpdeliverRight.setVisibility(View.GONE);
+        }
+        mMvpPresenter.deliverOrderInfo(order_id, cate_id, mMultipleStateView);
     }
 
     @Override
@@ -78,45 +111,24 @@ public class HelpDeliverInfoActivity extends BaseActivity<HelpDeliverInfoPresent
     @Override
     protected void setUpView() {
         actionTitle.setText("订单详情");
+        initListener();
+    }
+
+    private void initListener() {
         actionBack.setOnClickListener(this);
-        helptakeRight.setOnClickListener(this);
+        helpdeliverLeft.setOnClickListener(this);
+        helpdeliverPrice.setOnClickListener(this);
+        helpdeliverRight.setOnClickListener(this);
+        helpdeliverTopPhone.setOnClickListener(this);
+        helpdeliverBottomPhone.setOnClickListener(this);
+        helpdeliverTopAddress.setOnClickListener(this);
+        helpdeliverBottomAddress.setOnClickListener(this);
     }
 
     @Override
     protected void setUpData() {
-        putcheck();
     }
 
-    private void putcheck() {
-        PictureSelector.create(this)
-                .openGallery(PictureMimeType.ofImage())
-                .theme(R.style.picture_default_style)//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
-                .maxSelectNum(1)// 最大图片选择数量 int
-                .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-                .previewImage(true)// 是否可预览图片 true or false
-                .isCamera(true)// 是否显示拍照按钮 true or false
-                .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
-                .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
-                .cropCompressQuality(50)
-                .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
-                .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
-                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                .enableCrop(true)// 是否裁剪 true or false
-                .compress(true)// 是否压缩 true or false
-                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
-                .isGif(false)// 是否显示gif图片 true or false
-                .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
-                .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
-                .showCropGrid(true)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
-                .selectionMedia(list)// 是否传入已选图片 List<LocalMedia> list
-                .previewEggs(true)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
-                .minimumCompressSize(100)// 小于100kb的图片不压缩
-                .synOrAsy(true)//同步true或异步false 压缩 默认同步
-                .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
-                .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
-                .isDragFrame(true)// 是否可拖动裁剪框(固定)
-                .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
-    }
 
     @Override
     public void onClick(View v) {
@@ -124,70 +136,102 @@ public class HelpDeliverInfoActivity extends BaseActivity<HelpDeliverInfoPresent
             case R.id.action_back:
                 finish();
                 break;
-            case R.id.helptake_right:
-                ItemsPriceDialog(HelpDeliverInfoActivity.this, getLayoutInflater().inflate(R.layout.dialog_helpbuy, null), true, true);
+            case R.id.helpdeliver_left:
+                //返回接单
+                finish();
+                break;
+            case R.id.helpdeliver_right:
+                //判断当前状态  取件/寄出
+                //判断类型 接单状态 /已接单状态
+                if (progress.equals("3")) {
+                    mMvpPresenter.confirmPurchase(order_id, spUserID, "", "0", mMultipleStateView);
+                } else if (progress.equals("8")) {
+                    //确认送达接口
+                    mMvpPresenter.confirmService(order_id, mMultipleStateView);
+                } else if (progress.equals("9")) {
+                    //已完成接口
+                    mMvpPresenter.confirmFinish(order_id, mMultipleStateView);
+                }
+                break;
+            case R.id.helpdeliver_top_phone:
+                View dialog_iscall = getLayoutInflater().inflate(R.layout.dialog_iscall, null);
+                DialogUtils.callDialog(this, dialog_iscall, true, true, start_telephone);
+                break;
+            case R.id.helpdeliver_bottom_phone:
+                View dialog_iscall1 = getLayoutInflater().inflate(R.layout.dialog_iscall, null);
+                DialogUtils.callDialog(this, dialog_iscall1, true, true, telephone);
+                break;
+            case R.id.helpdeliver_top_address:
+                LatLng latLng = new LatLng(Double.parseDouble(start_lat), Double.parseDouble(start_lng));
+                OpenLocalMapUtil.goToGaodeMap(this,latLng,start_address);
+                break;
+            case R.id.helpdeliver_bottom_address:
+                LatLng latLng1 = new LatLng(Double.parseDouble(end_lat), Double.parseDouble(end_lng));
+                OpenLocalMapUtil.goToGaodeMap(this,latLng1,end_address);
                 break;
         }
     }
 
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case PictureConfig.CHOOSE_REQUEST:
-                    // 图片、视频、音频选择结果回调
-                    list = PictureSelector.obtainMultipleResult(data);
-                    uploadImgSignQiNiu(list.get(0).getCompressPath());
-                    break;
-            }
-        }
+    public void deliverOrderInfo(DeliverOrderInfoBean bean) {
+        //取 经纬度
+        start_lat = bean.getDetail().getStart_lat();
+        start_lng = bean.getDetail().getStart_lng();
+        start_address = bean.getDetail().getStart_address();
+        //收经纬度
+        end_lat = bean.getDetail().getEnd_lat();
+        end_lng = bean.getDetail().getEnd_lng();
+        end_address = bean.getDetail().getEnd_address();
+
+        //服务价格
+        helpdeliverPrice.setText(bean.getDetail().getPay_fee());
+        //取件人姓名
+        helpdeliverTopName.setText(bean.getDetail().getStart_name());
+        //取件人地址
+        helpdeliverTopAddress.setText(bean.getDetail().getStart_address() + bean.getDetail().getStart_detail());
+        //收件人姓名
+        helpdeliverBottomName.setText(bean.getDetail().getEnd_name());
+        //收件人地址
+        helpdeliverBottomAddress.setText(bean.getDetail().getEnd_address() + bean.getDetail().getEnd_detail());
+        //物品类型
+        helpdeliverType.setText(bean.getDetail().getType_name());
+        //揽件时间
+        helpdeliverTime.setText(bean.getDetail().getDelivery_time());
+        //备注
+        helpdeliverRemake.setText(bean.getDetail().getRemarks());
+        //寄件人电话
+        start_telephone = bean.getDetail().getStart_telephone();
+        //收件人电话
+        telephone = bean.getDetail().getEnd_telephone();
+        //编号
+        helpdeliverCodeNumber.setText(bean.getDetail().getOrder_sn());
+        //创建时间
+        helpdeliverCreattime.setText(bean.getDetail().getCreate_time());
+    }
+    @Override
+    protected boolean isRegisteredEventBus() {
+        return true;
+    }
+    @Override
+    public void confirmPurchase(ConfirmGetBuyBean bean) {
+        EventMessage eventMessage = new EventMessage(EventCode.EVENT_Z, 1);
+        post(eventMessage);
+        finish();
     }
 
-    //上传图片到九牛
-    public void uploadImgSignQiNiu(final String path) {
-        int num = (int) ((Math.random() * 9 + 1) * 100000);
-        String key = "icon_" + num + DateUtils.getData();
-        TokenHelper tokenHelper = TokenHelper.create("Nwz4XdKR-G777FoMf-DrjaySeCWvjiwv7gd4sIm1", "aZkyjMBELmPthFf-60rwJQKR0eXYazHydDG8uF4H");
-        String token = tokenHelper.getToken("mouqukeji");
-        UploadManager uploadManager = new UploadManager();
-        uploadManager.put(path, key, token, new UpCompletionHandler() {
-            @Override
-            public void complete(String key, ResponseInfo info, JSONObject res) {
-                //res包含hash、key等信息，具体字段取决于上传策略的设置
-                if (info.isOK()) {
-                    String url = "http://picture.mouqukeji.com/" + key;
-                } else {
-                    Log.i("picture", "Upload Fail");
-                    //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
-                }
-                Log.i("picture", key + ",\r\n " + info + ",\r\n " + res);
-            }
-        }, null);
+    @Override
+    public void confirmService(ConfirmServiceBean bean) {
+        EventMessage eventMessage = new EventMessage(EventCode.EVENT_Z, 1);
+        post(eventMessage);
+        finish();
     }
 
-    //商品价格框
-    public void ItemsPriceDialog(final Activity activity, View view, final boolean isCancelable, boolean isBackCancelable) {
-        final CenterDialogView centerDialogView = new CenterDialogView(activity, view, isCancelable, isBackCancelable);
-        centerDialogView.show();
-        LinearLayout dialogBuyInfoPic = centerDialogView.findViewById(R.id.dialog_buy_info_pic);
-        EditText dialogBuyInfoEt = centerDialogView.findViewById(R.id.dialog_buy_info_et);
-        Button dialogBuyInfoBt = centerDialogView.findViewById(R.id.dialog_buy_info_bt);
-        ImageView dialogBuyInfoClose = centerDialogView.findViewById(R.id.dialog_buy_info_close);
-
-        dialogBuyInfoClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                centerDialogView.dismiss();
-            }
-        });
-        dialogBuyInfoPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                putcheck();
-                centerDialogView.dismiss();
-            }
-        });
+    @Override
+    public void confirmFinish(ConfirmFinishBean bean) {
+        EventMessage eventMessage = new EventMessage(EventCode.EVENT_Z, 1);
+        post(eventMessage);
+        finish();
     }
 
 }

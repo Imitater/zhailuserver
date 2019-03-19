@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 
 import com.mouqukeji.zhailuserver.ui.activity.MainActivity;
+import com.mouqukeji.zhailuserver.ui.activity.SignInActivity;
 
 
 public class LoginQuit {
@@ -30,9 +31,9 @@ public class LoginQuit {
             activity.finish();
             //跳转到登录页面
             if (type==0){
-                //Intent intent=new Intent(activity,SignInActivity.class);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //activity.startActivity(intent);
+                Intent intent=new Intent(activity,SignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                activity.startActivity(intent);
             }else if (type==1){
                 Intent intent=new Intent(activity,MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

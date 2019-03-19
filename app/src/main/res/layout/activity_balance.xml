@@ -76,6 +76,9 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:inputType="number|numberDecimal"
+                        android:singleLine="true"
+                        android:paddingLeft="5dp"
                         android:id="@+id/balance_et"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"

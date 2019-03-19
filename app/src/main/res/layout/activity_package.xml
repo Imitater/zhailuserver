@@ -20,11 +20,11 @@
             android:layout_marginTop="14dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="17dp"
-            android:backgroundTint="@color/blue"
-            android:elevation="4dp"
+             android:elevation="4dp"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
+                android:background="@mipmap/mipmap_money_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -44,6 +44,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/package_balance"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="24dp"
@@ -82,12 +83,12 @@
             android:layout_marginTop="19dp"
             android:layout_marginBottom="19dp"
             android:layout_marginLeft="16dp"
-            android:background="@mipmap/ic_launcher"
+            android:background="@mipmap/mipmap_shouzhi"
             android:layout_width="18dp"
             android:layout_height="18dp" />
         <TextView
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginLeft="15dp"
             android:layout_gravity="center_vertical"
             android:text="收支明细"
@@ -98,8 +99,8 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center_vertical"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/package_tixian"
@@ -112,12 +113,12 @@
             android:layout_marginTop="19dp"
             android:layout_marginBottom="19dp"
             android:layout_marginLeft="16dp"
-            android:background="@mipmap/ic_launcher"
+            android:background="@mipmap/mipmap_zhanghu"
             android:layout_width="18dp"
             android:layout_height="18dp" />
         <TextView
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginLeft="15dp"
             android:layout_gravity="center_vertical"
             android:text="提现账户"
@@ -128,7 +129,7 @@
             android:layout_marginRight="22dp"
             android:layout_gravity="center_vertical"
             android:background="@mipmap/mipmap_next"
-            android:layout_width="11dp"
-            android:layout_height="11dp" />
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
     </LinearLayout>
 </LinearLayout>

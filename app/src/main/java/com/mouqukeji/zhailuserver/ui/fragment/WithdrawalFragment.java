@@ -10,11 +10,14 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseFragment;
+import com.mouqukeji.zhailuserver.bean.PaymentDetailsBean;
 import com.mouqukeji.zhailuserver.contract.fragment.WithdrawalContract;
 import com.mouqukeji.zhailuserver.model.fragment.WithdrawalModel;
 import com.mouqukeji.zhailuserver.presenter.fragment.WithdrawalPresenter;
+import com.mouqukeji.zhailuserver.ui.activity.CashOutActivity;
 import com.mouqukeji.zhailuserver.ui.activity.PaymentInfoActivity;
 import com.mouqukeji.zhailuserver.ui.adapter.WithdrawalAdapter;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +29,14 @@ public class WithdrawalFragment extends BaseFragment<WithdrawalPresenter, Withdr
     RecyclerView withdrawalRecyclerview;
     @BindView(R.id.withdrawal_swiperefreshlayout)
     SwipeRefreshLayout withdrawalSwiperefreshlayout;
-    List list = new ArrayList();
-    private int page=1;
     private WithdrawalAdapter withdrawalAdapter;
+    private boolean flag = true;
+    private String spUserID;
 
     @Override
     protected void initViewAndEvents() {
-
+        spUserID = new GetSPData().getSPUserID(getActivity());
+        mMvpPresenter.getPaymentDetails(spUserID, "2", mMultipleStateView);
     }
 
     @Override
@@ -42,35 +46,29 @@ public class WithdrawalFragment extends BaseFragment<WithdrawalPresenter, Withdr
 
     @Override
     protected void setUpView() {
-        //假数据
-        initData();
-        initRecyclerview();
-        //设置上拉加载
-        setUpLoad();
-        //设置下拉刷新
-        initSwipeRefresh();
-    }
-    private void initData() {
-        for (int i = 0; i < 10; i++) {
-            list.add(i);
-        }
+
+
     }
 
-    private void initRecyclerview() {
+
+    private void initRecyclerview(List<PaymentDetailsBean.ServerBillListBean> serverBillList) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getMContext());
         withdrawalRecyclerview.setLayoutManager(linearLayoutManager);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-        withdrawalAdapter = new WithdrawalAdapter(R.layout.adapter_payment_all, list);
+        withdrawalAdapter = new WithdrawalAdapter(R.layout.adapter_payment_all, serverBillList);
         withdrawalRecyclerview.setAdapter(withdrawalAdapter);
         withdrawalAdapter.disableLoadMoreIfNotFullPage(withdrawalRecyclerview);
         withdrawalAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                Intent intent = new Intent(getContext(), PaymentInfoActivity.class);
+                //提现
+                Intent intent = new Intent(getMContext(), CashOutActivity.class);
+                intent.putExtra("bill_id", withdrawalAdapter.getData().get(i).getId());
                 getMContext().startActivity(intent);
             }
         });
     }
+
     @Override
     protected void setUpData() {
 
@@ -80,9 +78,10 @@ public class WithdrawalFragment extends BaseFragment<WithdrawalPresenter, Withdr
     public void onClick(View v) {
 
     }
+
     private void initSwipeRefresh() {
         //设置下拉刷新
-        if (withdrawalSwiperefreshlayout!=null) {
+        if (withdrawalSwiperefreshlayout != null) {
             withdrawalSwiperefreshlayout.setColorSchemeResources(R.color.blue);
             withdrawalSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -90,13 +89,14 @@ public class WithdrawalFragment extends BaseFragment<WithdrawalPresenter, Withdr
                     withdrawalRecyclerview.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            mMvpPresenter.getPaymentDetails(spUserID, "2", mMultipleStateView);
                             if (withdrawalAdapter != null) {
                                 withdrawalAdapter.notifyDataSetChanged();
                                 withdrawalAdapter.setUpFetching(false);
                                 withdrawalAdapter.setUpFetchEnable(false);
                             }
-                            if (withdrawalSwiperefreshlayout!=null)
-                            withdrawalSwiperefreshlayout.setRefreshing(false);
+                            if (withdrawalSwiperefreshlayout != null)
+                                withdrawalSwiperefreshlayout.setRefreshing(false);
                         }
                     }, 2000);
                 }
@@ -105,34 +105,20 @@ public class WithdrawalFragment extends BaseFragment<WithdrawalPresenter, Withdr
     }
 
 
-    private void setUpLoad() {
-        //recyclerview 滑动动画设置
-        withdrawalAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);//设置recyclerview 动画
-        withdrawalAdapter.isFirstOnly(false);//设置动画一直使用
-        if (list.size() >= 10) {
-            withdrawalAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-                @Override
-                public void onLoadMoreRequested() {
-                    setLoadMore();//加载更多
-                }
-            }, withdrawalRecyclerview);
+    @Override
+    public void getPaymentDetails(PaymentDetailsBean bean) {
+        if (flag) {
+            flag = false;
+            //设置recyclerview
+            initRecyclerview(bean.getServerBillList());
         }
+        //设置下拉刷新
+        initSwipeRefresh();
     }
 
-    private void setLoadMore() {
-        withdrawalRecyclerview.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (page > 2) {
-                    //数据全部加载完毕
-                    withdrawalAdapter.loadMoreEnd();
-                } else {
-                    page++;
-                    //成功获取更多数据
-                    withdrawalAdapter.addData(list);
-                    withdrawalAdapter.loadMoreComplete();
-                }
-            }
-        }, 1500);
+    @Override
+    public void onStart() {
+        super.onStart();
+        flag = true;
     }
 }

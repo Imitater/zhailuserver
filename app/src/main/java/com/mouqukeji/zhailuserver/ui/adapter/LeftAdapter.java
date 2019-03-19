@@ -11,7 +11,8 @@ import com.mouqukeji.zhailuserver.R;
 
 public class LeftAdapter extends BaseAdapter {
     private final Context context;
-    String[] titlt={"身份认证","我的资料","我的钱包","系统设置"};
+    String[] titlt={"我的资料","我的钱包","系统设置"};
+    int[] img={R.mipmap.mipmap_zhiliao,R.mipmap.mipmap_zhanghu,R.mipmap.mipmap_setting};
     public LeftAdapter(Context context) {
         this.context=context;
     }
@@ -37,6 +38,7 @@ public class LeftAdapter extends BaseAdapter {
         ImageView adapterLeftIv=convertView.findViewById(R.id.adapter_left_iv);
         TextView adapterLeftTv=convertView.findViewById(R.id.adapter_left_tv);
         adapterLeftTv.setText(titlt[position]);
+        adapterLeftIv.setBackgroundResource(img[position]);
         return convertView;
     }
 }

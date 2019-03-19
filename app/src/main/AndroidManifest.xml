@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.mouqukeji.zhailuserver">
 
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,45 +15,116 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.mouqukeji.hmdeer.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="25799f72a07e49c1dffd95f6aa144999" ></meta-data>
+            android:value="ee30f9f1248ead24a2f18c311977e76d"></meta-data>
+
+        <service android:name="com.amap.api.track.AMapTrackService" />
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name="com.mouqukeji.zhailuserver.ui.activity.MainActivity">
+        <activity android:name="com.mouqukeji.zhailuserver.ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.IdentityActivity" />
+        <activity android:name=".ui.activity.InformationActivity" />
+        <activity
+            android:name=".ui.activity.SelectLocationActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.activity.SelectCityActivity" />
+        <activity android:name=".ui.activity.PaymentActvitiy" />
+        <activity android:name=".ui.activity.PageActivity" />
+        <activity android:name=".ui.activity.PaymentInfoActivity" />
+        <activity android:name=".ui.activity.WithdrawalActivity" />
+        <activity android:name=".ui.activity.BalanceActivity" />
+        <activity android:name=".ui.activity.ChangePwActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.QuestionActivity" />
+        <activity android:name=".ui.activity.AdviceActivity" />
+        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity
+            android:name=".ui.activity.MyInfoActivity"
+            android:theme="@style/TranTheme" />
+        <activity android:name=".ui.activity.HelpTakeInfoActivity" />
+        <activity android:name=".ui.activity.GetbackPw1Activity"></activity>
+        <activity android:name=".ui.activity.GetbackPw2Activity"></activity>
+        <activity android:name=".ui.activity.GetbackPw3Activity" />
+        <activity
+            android:name=".ui.activity.SignInActivity"
+            android:theme="@style/TranTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activity.SignUpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.activity.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.IdentityActivity" />
-        <activity android:name=".ui.activity.InformationActivity" />
-        <activity
-            android:name=".ui.activity.SelectLocationActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.activity.SelectCityActivity"/>
-        <activity android:name=".ui.activity.PaymentActvitiy"/>
-        <activity android:name=".ui.activity.PageActivity"/>
-        <activity android:name=".ui.activity.PaymentInfoActivity"/>
-        <activity android:name=".ui.activity.WithdrawalActivity"/>
-        <activity android:name=".ui.activity.BalanceActivity"/>
-        <activity android:name=".ui.activity.ChangePwActivity"/>
-        <activity android:name=".ui.activity.SettingActivity"/>
-        <activity android:name=".ui.activity.QuestionActivity"/>
-        <activity android:name=".ui.activity.AdviceActivity"/>
-        <activity android:name=".ui.activity.AboutActivity"></activity>
-        <activity android:name=".ui.activity.MyInfoActivity"
-            android:theme="@style/TranTheme"/>
-        <activity android:name=".ui.activity.HelpTakeInfoActivity"/>
+        <activity android:name=".ui.activity.HelpBuyInfoActivity" />
+        <activity android:name=".ui.activity.HelpSendInfoActivity" />
+        <activity android:name=".ui.activity.HelpDeliverInfoActivity" />
+        <activity android:name=".ui.activity.HelpUniversalInfoActivity" />
+        <activity android:name=".ui.activity.CashOutActivity" />
+        <activity android:name=".ui.activity.BigImageActivity" />
+        <activity android:name=".ui.activity.AppIntroActivity"></activity>
+        <!--今日头条适配方案-->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
+        <!--7.0 文件存储-->
+        <provider
+            android:name=".update.UpdateFileProvider"
+            android:authorities="${applicationId}.updatefileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/update_cache_path" />
+        </provider>
+
     </application>
 
 </manifest>

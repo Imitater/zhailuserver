@@ -21,10 +21,13 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mouqukeji.zhailuserver.R;
 import com.mouqukeji.zhailuserver.base.BaseActivity;
+import com.mouqukeji.zhailuserver.bean.FeedBackBean;
 import com.mouqukeji.zhailuserver.contract.activity.AdviceContract;
 import com.mouqukeji.zhailuserver.model.activity.AdviceModel;
 import com.mouqukeji.zhailuserver.presenter.activity.AdvicePresenter;
 import com.mouqukeji.zhailuserver.utils.DateUtils;
+import com.mouqukeji.zhailuserver.utils.GetSPData;
+import com.mouqukeji.zhailuserver.utils.KeyUtils;
 import com.mouqukeji.zhailuserver.utils.TokenHelper;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -93,6 +96,7 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
 
     @Override
     protected void setUpView() {
+        spUserID = new GetSPData().getSPUserID(this);
         actionTitle.setText("意见反馈");
         adviceEt.setSelection(adviceEt.length()); // 将光标移动最后一个字符后面
         setListener();
@@ -116,6 +120,7 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
                 .compress(true)// 是否压缩 true or false
                 .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示 true or false
                 .isGif(false)// 是否显示gif图片 true or false
+                .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
                 .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false   true or false
                 .showCropGrid(true)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false    true or false
@@ -125,7 +130,7 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
                 .synOrAsy(true)//同步true或异步false 压缩 默认同步
                 .rotateEnabled(true) // 裁剪是否可旋转图片 true or false
                 .scaleEnabled(true)// 裁剪是否可放大缩小图片 true or false
-                .isDragFrame(true)// 是否可拖动裁剪框(固定)
+                .isDragFrame(false)// 是否可拖动裁剪框(固定)
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
 
     }
@@ -152,8 +157,8 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
         flag = false;
         int num = (int) ((Math.random() * 9 + 1) * 100000);
         String key = "icon_" + num + DateUtils.getData();
-        TokenHelper tokenHelper = TokenHelper.create("Nwz4XdKR-G777FoMf-DrjaySeCWvjiwv7gd4sIm1", "aZkyjMBELmPthFf-60rwJQKR0eXYazHydDG8uF4H");
-        String token = tokenHelper.getToken("mouqukeji");
+        TokenHelper tokenHelper = TokenHelper.create(KeyUtils.Access_Key, KeyUtils.Secret_Key);
+        String token = tokenHelper.getToken(KeyUtils.Bucket);
         UploadManager uploadManager = new UploadManager();
         uploadManager.put(path, key, token, new UpCompletionHandler() {
 
@@ -162,7 +167,7 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
             public void complete(String key, ResponseInfo info, JSONObject res) {
                 //res包含hash、key等信息，具体字段取决于上传策略的设置
                 if (info.isOK()) {
-                    url = url + "http://picture.mouqukeji.com/" + key + ";";
+                    url = url + KeyUtils.Base_Url+ key + ";";
                     Log.i("picture", "Upload Success");
                     if (i == list.size() - 1) {
                         flag = true;
@@ -310,6 +315,7 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
                     Toast.makeText(AdviceActivity.this, "请提供相关问题图片", Toast.LENGTH_SHORT).show();
                 } else {
                      //提交
+                    mMvpPresenter.feedBack(url, adviceEt.getText().toString(), type + "", spUserID, mMultipleStateView);
                 }
                 break;
             case R.id.advice_add_image:
@@ -391,10 +397,10 @@ public class AdviceActivity extends BaseActivity<AdvicePresenter, AdviceModel> i
     }
 
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void feedBack(FeedBackBean backBean) {
+        Toast.makeText(this,"提交完成",Toast.LENGTH_SHORT).show();
     }
 }
